@@ -1,0 +1,2 @@
+2025-03=14 23:08:18:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.89); currently, chromedriver 134.0.6998.88 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=14 23:08:20:INFO:**************test_valid_title

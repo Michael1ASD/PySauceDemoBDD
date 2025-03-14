@@ -5,6 +5,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from base_pages.LoginPage import LoginPage
 from utilities.read_properties import ReadConfig
+from utilities.custom_logger import LogMaker
+
+
 
 class TestLogin:
     LOGIN_URL = ReadConfig.get_login_page_url()
@@ -12,8 +15,12 @@ class TestLogin:
     VALID_PASSWORD = 'secret_sauce'
     INVALID_USERNAME = 'Invalidusername'
     INVALID_PASSWORD = 'Invalidpassword'
+    logger = LogMaker.log_gen()
+
+
 
     def test_valid_title(self,setup):
+        self.logger.info("**************test_valid_title")
         self.driver = setup
         self.driver.get(self.LOGIN_URL)
         actual_title = self.driver.title
