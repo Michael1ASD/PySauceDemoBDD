@@ -8,7 +8,6 @@ from utilities.read_properties import ReadConfig
 
 class TestLogin:
     LOGIN_URL = ReadConfig.get_login_page_url()
-    # LOGIN_URL = 'https://www.saucedemo.com/'
     VALID_USERNAME = 'standard_user'
     VALID_PASSWORD = 'secret_sauce'
     INVALID_USERNAME = 'Invalidusername'
@@ -18,15 +17,14 @@ class TestLogin:
         self.driver = setup
         self.driver.get(self.LOGIN_URL)
         actual_title = self.driver.title
-        expected_title = 'Swag Labs'
+        expected_title = 'Swag Labs1'
 
         if actual_title == expected_title:
-            self.driver.save_screenshot("./screenshots/test.jpg")
             assert True
             self.driver.close()
 
         else:
-            self.driver.save_screenshot("./screenshots/test.jpg")
+            self.driver.save_screenshot("..\\screenshots\\error_screenshot.png")
             self.driver.close()
             assert False
 
