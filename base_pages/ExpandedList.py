@@ -2,11 +2,12 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from utilities.handlers import Handlers
 class ExpandedList:
 
     def __init__(self, driver):
         self.driver = driver
+        self.handlers = Handlers(driver)
 
     def expand_burger_list(self):
         burger_open_button = (By.XPATH, "//button[@id='react-burger-menu-btn']")
@@ -30,7 +31,7 @@ class ExpandedList:
                    "reset_app_status_button" : (By.XPATH, "//a[@id='reset_sidebar_link']")
         }
 
-        WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable(options[option_key])).click()
+        self.handlers.wait_for_element_and_click(options[option_key])
 
     def logout(self):
         self.expand_burger()

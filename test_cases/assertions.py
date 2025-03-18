@@ -7,7 +7,6 @@ class Assertion:
     def __init__(self, driver):
         self.driver = driver
 
-    @staticmethod
     def assert_element_visible(self, locator):
         try:
             webelement = WebDriverWait(self.driver, 10).until(

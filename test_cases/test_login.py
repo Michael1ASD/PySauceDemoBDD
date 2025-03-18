@@ -44,12 +44,11 @@ class TestLogin:
         self.login_page.login(self.valid_username, self.valid_password)
 
         expected_element = (By.XPATH, "//div[@class='app_logo']")
-        # visibility_tester = Assertion(self.driver)
-        # visibility_tester.assert_element_visible(expected_element)
-        Assertion.assert_element_visible(self,expected_element)
+        visibility_tester = Assertion(self.driver)
+        visibility_tester.assert_element_visible(expected_element)
 
-        expanded_list = ExpandedList(self.driver)
-        expanded_list.logout()
+        self.expanded_list = ExpandedList(self.driver)
+        self.expanded_list.logout()
         self.driver.close()
 
     def test_invalid_login_by_username(self, setup):
@@ -78,8 +77,8 @@ class TestLogin:
         self.driver.get(self.login_url)
         self.login_page = LoginPage(self.driver)
         self.login_page.login(self.valid_username, self.valid_password)
-        expanded_list = ExpandedList(self.driver)
-        expanded_list.logout()
+        self.expanded_list = ExpandedList(self.driver)
+        self.expanded_list.logout()
 
         expected_element = (By.XPATH, "//div[@class='login_logo']")
         visibility_tester = Assertion(self.driver)
