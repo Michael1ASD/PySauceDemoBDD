@@ -1,6 +1,8 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from base_pages.LoginPage import LoginPage
+
 
 @pytest.fixture
 def setup():
@@ -15,3 +17,4 @@ def setup():
     chrome_options.add_argument("--log-level=ALL")
     driver = webdriver.Chrome(options=chrome_options)
     return driver
+
