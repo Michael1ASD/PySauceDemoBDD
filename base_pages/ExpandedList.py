@@ -26,6 +26,12 @@ class ExpandedList:
         self.driver.find_element(*burger_close_button).click()
 
     def select_option_from_burger(self,option_key):
+        """
+        :param option_key: "logout_button"
+                           "all_items_button",
+                           "reset_app_status_button"
+        """
+
         options = {"logout_button" : (By.XPATH, "//a[@id='logout_sidebar_link']"),
                    "all_items_button" : (By.XPATH, "//a[@id='inventory_sidebar_link']"),
                    "reset_app_status_button" : (By.XPATH, "//a[@id='reset_sidebar_link']")
@@ -40,26 +46,3 @@ class ExpandedList:
     def reset_app_state(self):
         self.expand_burger()
         self.select_option_from_burger("reset_app_status_button")
-
-
-
-# BASE_URL = 'https://www.saucedemo.com/'
-# USERNAME_FIELD_LOC = (By.XPATH, "//input[@id='user-name']")
-# PASSWORD_FIELD_LOC = (By.XPATH, "//input[@id='password']")
-# LOGIN_PAGE_BANNER_LOC = (By.XPATH, "//div[@class='login_logo']")
-# LOGIN_PAGE_TITLE_EXPECTED = 'Swag Labs'
-# LOGIN_BUTTON_LOC = (By.XPATH, "//input[@id='login-button']")
-
-# ERROR_WRONG_LOGIN_EXPECTED = 'Epic sadface: Username and password do not match any user in this service'
-# ERROR_LOC = (By.CSS_SELECTOR, "h3[data-test='error']")
-# SHOPPING_CART_NUMBER_LOC = (By.XPATH, "//span[@class='shopping_cart_badge']")
-
-
-
-# SHOPPING_CART_LOC = (By.XPATH, "//a[@class='shopping_cart_link']")
-# SORT_PRODUCTS_DROPDOWN = (By.XPATH, "//select[@class='product_sort_container']")
-# FACEBOOK_LOGO_LOC = (By.XPATH, "//a[@data-test = 'social-facebook']")
-# X_LOGO_LOC = (By.XPATH, "//a[@data-test = 'social-twitter']")
-# LINKEDIN_LOGO_LOC = (By.XPATH, "//a[@data-test = 'social-linkedin']")
-#
-# SORTING_M

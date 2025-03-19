@@ -1,14 +1,10 @@
-import time
-
-import pytest
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from utilities.read_properties import ReadConfig
 from utilities.custom_logger import LogMaker
 from base_pages.LoginPage import LoginPage
 from base_pages.ExpandedList import ExpandedList
-from test_cases.assertions import Assertion
-
+from utilities.assertions import Assertion
+import pytest
 
 class TestLogin:
     login_url = ReadConfig.get_login_page_url()

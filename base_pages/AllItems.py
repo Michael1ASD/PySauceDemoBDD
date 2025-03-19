@@ -1,48 +1,58 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class AllItems:
+    shopping_cart_counter = (By.XPATH, "//span[@class='shopping_cart_badge']")
+    shopping_cart_loc = (By.XPATH, "//a[@class='shopping_cart_link']")
 
     def __init__(self, driver):
         self.driver = driver
 
-    def open_all_items_page(self, url):
-        self.driver.get(url)
+    def open_all_items_page(self):
+        self.driver.get("https://www.saucedemo.com/inventory.html")
 
-    def enter_login(self, username):
-        username_loc = (By.XPATH, "//input[@id='user-name']")
-        self.driver.find_element(*username_loc).clear()
-        self.driver.find_element(*username_loc).send_keys(username)
+    def verify_cart_is_empty(self):
+        is_invisible = WebDriverWait(self.driver, 1).until(EC.invisibility_of_element_located(self.shopping_cart_counter))
+        assert is_invisible, f"Cart is not empty"
 
-    def enter_password(self, password):
-        password_loc = (By.XPATH, "//input[@id='password']")
-        self.driver.find_element(*password_loc).clear()
-        self.driver.find_element(*password_loc).send_keys(password)
+    def open_cart(self):
+        self.driver.find_element(*self.shopping_cart_loc).click()
 
-    def click_login(self):
-        login_button = (By.XPATH, "//input[@id='login-button']")
-        self.driver.find_element(*login_button).click()
+    def add_product_to_cart_by_name(self, product_name):
+        """
+        Adds a product to the shopping cart based on its name displayed on the page.
 
-    def logout(self):
+        Args:
+            product_name (str): The name of the product as displayed in the inventory items.
+                                It should match exactly with the displayed text in the application.
 
-        # ARRANGE
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.get(BASE_URL)
-        driver.find_element(*USERNAME_FIELD_LOC).send_keys(USERNAME_VALID)
-        driver.find_element(*PASSWORD_FIELD_LOC).send_keys(PASSWORD_VALID)
-        driver.find_element(*LOGIN_BUTTON_LOC).click()
+        Example:
+            item = AllItems(driver)
+            item.add_product_to_cart_by_name("Sauce Labs Backpack")
+        """
 
-        # ACT
-        driver.find_element(*LEFT_MENU_BURGER_OPEN_BUTTON).click()
-        WebDriverWait(driver, 3).until(EC.element_to_be_clickable(LOGOUT_BUTTON)).click()
-        actual_title = driver.title
+        product_name_xpath = f"//div[@class='inventory_item_name ' and text()='{product_name}']"
+        product_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, product_name_xpath)))
+        add_to_cart_button = product_element.find_element(By.XPATH, ".//ancestor::div[@class='inventory_item']//button[contains(text(), 'Add to cart')]")
+        add_to_cart_button.click()
 
-        # ASSERT
-        assert actual_title == LOGIN_PAGE_TITLE_EXPECTED, f"Expected title '{LOGIN_PAGE_TITLE_EXPECTED}', but got '{actual_title}'"
+    def return_price_by_product_name(self, product_name):
+        """
+        Adds a product to the shopping cart based on its name displayed on the page.
 
-        # TEARDOWN
-        driver.quit()
+        Args:
+            product_name (str): The name of the product as displayed in the inventory items.
+                                It should match exactly with the displayed text in the application.
 
+        Example:
+            item = AllItems(driver)
+            item.add_product_to_cart_by_name("Sauce Labs Backpack")
+        """
 
-# SORTING_METHODS_DICT = {"NAME ASC" : "Name (A to Z)", "NAME DESC" : "Name (Z to A)", "PRICE ASC" : "Price  (low to high)", "PRICE DESC" : "Price  (high to low)"}
+        product_name_xpath = f"//div[@class='inventory_item_name ' and text()='{product_name}']"
+        product_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, product_name_xpath)))
+        price_element = product_element.find_element(By.XPATH, ".//ancestor::div[@class='inventory_item']//div[@class='inventory_item_price']")
+        return price_element.text
