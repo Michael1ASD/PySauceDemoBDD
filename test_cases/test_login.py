@@ -67,7 +67,6 @@ class TestLogin:
         self.driver.get(self.login_url)
         self.login_page = LoginPage(self.driver)
         self.login_page.login(self.valid_username, self.invalid_password)
-        self.login_page.click_login()
 
         assert self.driver.find_element(By.CSS_SELECTOR,"h3[data-test='error']").text == 'Epic sadface: Username and password do not match any user in this service'
 
@@ -83,7 +82,7 @@ class TestLogin:
         self.expanded_list.logout()
 
         expected_element = (By.XPATH, "//div[@class='login_logo']")
-        visibility_tester = Assertion(self.driver) # Czy potrzeba tworzyć rzeczywiście nowy obiekt Assertion?
+        visibility_tester = Assertion(self.driver)
         visibility_tester.assert_element_visible(expected_element) # Obsłużenie sytuacji Assert False?
 
         self.driver.close()

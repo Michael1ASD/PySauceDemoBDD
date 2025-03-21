@@ -9,12 +9,7 @@ class Assertion:
 
     def assert_element_visible(self, locator):
         try:
-            webelement = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located(locator)
-            )
-            WebDriverWait(self.driver, 10).until(
-                EC.visibility_of(webelement)
-            )
-            assert webelement.is_displayed(), "Element is not visible"
+            webelement = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(locator))
+            WebDriverWait(self.driver, 10).until(EC.visibility_of(webelement))
         except Exception as e:
             assert False, f"Element could not be found or is not visible: {str(e)}"

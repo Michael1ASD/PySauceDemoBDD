@@ -1,3 +1,29 @@
+python decouple
+config.env
+typowanie
+dobre praktywki: hinty - dodać typowanie w nawiasach do metody i rezultat po nawiaasie
+dodać do parametrów domyślne wartości
+polling frequency
+BDD
+logowanie w testach
+
+logger jako dekorator do funkcji w klasach podrzędnych -
+brak trace'a z loggera z wykonywania testów
+dodać logger do handlers
+
+python bdd
+
+log_gen - bez log-gen
+
+allure
+
+@dekorator parametrize
+mark
+
+
+
+
+
 # Zadanie 1: Prosty Kalkulator
 # Cel: Stwórz prosty kalkulator, który wykonuje podstawowe operacje matematyczne (dodawanie, odejmowanie, mnożenie, dzielenie).
 # Instrukcje:

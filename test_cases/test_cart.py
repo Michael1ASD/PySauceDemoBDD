@@ -25,9 +25,9 @@ class TestCart:
         self.login_page.open_login_page(self.login_url)
         self.login_page.login(self.valid_username, self.valid_password)
 
-        self.all_items = AllItems(self.driver)
-        self.all_items.verify_cart_is_empty()
-        self.all_items.add_product_to_cart_by_name("Sauce Labs Backpack")
+        all_items = AllItems(self.driver)
+        all_items.verify_cart_is_empty()
+        all_items.add_product_to_cart_by_name("Sauce Labs Backpack")
 
         self.assertion = Assertion(self.driver)
         self.assertion.assert_element_visible(shopping_cart_counter)

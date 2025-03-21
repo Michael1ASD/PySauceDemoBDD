@@ -21,7 +21,7 @@ class AllItems:
     def open_cart(self):
         self.driver.find_element(*self.shopping_cart_loc).click()
 
-    def add_product_to_cart_by_name(self, product_name):
+    def add_product_to_cart_by_name(self, product_name: str):
         """
         Adds a product to the shopping cart based on its name displayed on the page.
 
@@ -39,7 +39,7 @@ class AllItems:
         add_to_cart_button = product_element.find_element(By.XPATH, ".//ancestor::div[@class='inventory_item']//button[contains(text(), 'Add to cart')]")
         add_to_cart_button.click()
 
-    def return_price_by_product_name(self, product_name):
+    def return_price_by_product_name(self, product_name: str) -> str:
         """
         Adds a product to the shopping cart based on its name displayed on the page.
 

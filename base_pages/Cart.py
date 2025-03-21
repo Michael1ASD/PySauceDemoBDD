@@ -10,10 +10,8 @@ class Cart:
     def __init__(self, driver):
         self.driver = driver
 
-    def continue_shopping(self, username):
-        username_loc = (By.XPATH, "//input[@id='user-name']")
+    def continue_shopping(self):
         self.driver.find_element(self.continue_shopping_button).click()
 
-    def checkout(self, username):
-        username_loc = (By.XPATH, "//input[@id='user-name']")
+    def checkout(self):
         self.driver.find_element(self.checkout_button).click()
