@@ -6,6 +6,7 @@ from base_pages.ExpandedList import ExpandedList
 from utilities.assertions import Assertion
 from configurations.config import LOGIN_URL, VALID_USERNAME, VALID_PASSWORD
 import pytest
+import allure
 
 class TestLogin:
     # login_url = ReadConfig.get_login_page_url()
@@ -13,10 +14,13 @@ class TestLogin:
     invalid_password = 'Invalidpassword'
     logger = LogMaker.log_gen()
 
+    @allure.feature('User Login')
+    @allure.story('Valid Login Title')
     def test_valid_title(self,setup):
-        self.logger.info("***test_valid_title_started***")
+        # self.logger.info("***test_valid_title_started***")
         self.driver = setup
         self.login_page = LoginPage(self.driver)
+        allure.step("Step 1: Open login page")
         self.login_page.open_login_page(LOGIN_URL)
 
         actual_title = self.driver.title
@@ -33,12 +37,15 @@ class TestLogin:
             self.driver.close()
             assert False
 
-
+    @allure.feature('User Login')
+    @allure.story('Valid login')
     def test_valid_login(self, setup):
         self.logger.info("***test_valid_login_started***")
         self.driver = setup
         self.login_page = LoginPage(self.driver)
+        allure.step("Step 1: Open login page")
         self.login_page.open_login_page(LOGIN_URL)
+        allure.step("Step 2: Enter username, password and submit")
         self.login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
         expected_element = (By.XPATH, "//div[@class='app_logo']")
@@ -49,6 +56,8 @@ class TestLogin:
         self.expanded_list.logout()
         self.driver.close()
 
+    @allure.feature('User Login')
+    @allure.story('Invalid username')
     def test_invalid_login_by_username(self, setup):
         self.logger.info("***test_invalid_login_by_username_started***")
         self.driver = setup
@@ -60,6 +69,8 @@ class TestLogin:
 
         self.driver.close()
 
+    @allure.feature('User Login')
+    @allure.story('Invalid password')
     def test_invalid_login_by_password(self, setup):
         self.logger.info("***test_invalid_login_by_password_started***")
         self.driver = setup
@@ -71,6 +82,8 @@ class TestLogin:
 
         self.driver.close()
 
+    @allure.feature('User Login')
+    @allure.story('Logout')
     def test_logout(self, setup):
         self.logger.info("***test_logout***")
         self.driver = setup
