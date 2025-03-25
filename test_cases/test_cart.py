@@ -8,12 +8,10 @@ from base_pages.AllItems import AllItems
 from base_pages.Cart import Cart
 from base_pages.ExpandedList import ExpandedList
 from utilities.assertions import Assertion
-from configurations.config import LOGIN_URL
+from configurations.config import LOGIN_URL, VALID_USERNAME, VALID_PASSWORD
 
 
 class TestCart:
-    valid_username = 'standard_user'
-    valid_password = 'secret_sauce'
     logger = LogMaker.log_gen()
 
     def test_verify_cart_counter_visible(self, setup):
@@ -23,7 +21,7 @@ class TestCart:
         self.driver = setup
         self.login_page = LoginPage(self.driver)
         self.login_page.open_login_page(LOGIN_URL)
-        self.login_page.login(self.valid_username, self.valid_password)
+        self.login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
         all_items = AllItems(self.driver)
         all_items.verify_cart_is_empty()
@@ -39,11 +37,11 @@ class TestCart:
         self.driver = setup
         self.login_page = LoginPage(self.driver)
         self.login_page.open_login_page(LOGIN_URL)
-        self.login_page.login(self.valid_username, self.valid_password)
+        self.login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
         self.all_items = AllItems(self.driver)
         self.all_items.verify_cart_is_empty()
-        self.all_items.add_product_to_cart_by_name("Sauce Labs Backpack")
+        self.all_items.add_product_to_cart_by_name("Sauce Labs Bike Light")
         self.all_items.open_cart()
 
         self.assertion = Assertion(self.driver)
