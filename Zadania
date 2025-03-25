@@ -7,6 +7,7 @@ polling frequency
 BDD
 logowanie w testach
 
+
 logger jako dekorator do funkcji w klasach podrzędnych -
 brak trace'a z loggera z wykonywania testów
 dodać logger do handlers
@@ -19,6 +20,8 @@ allure
 
 @dekorator parametrize
 mark
+
+
 
 
 

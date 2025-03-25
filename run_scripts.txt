@@ -1,0 +1,9 @@
+Run script with reports:
+1.  reports:
+$env:APP_ENV='dev'; pytest --alluredir=reports test_cases/test_login.py
+
+2. Generate reports
+allure generate reports
+
+3. Open reports:
+allure serve reports

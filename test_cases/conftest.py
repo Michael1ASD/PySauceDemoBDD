@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
+import logging
 
 @pytest.fixture
 def setup():
@@ -16,3 +16,20 @@ def setup():
     chrome_options.add_argument("--log-level=ALL")
     driver = webdriver.Chrome(options=chrome_options)
     return driver
+
+
+# Konfiguracja logowania
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+)
+
+logger = logging.getLogger(__name__)
+
+def pytest_runtest_logreport(report):
+    if report.failed:
+        logger.error(f"Test {report.nodeid} failed. Reason: {report.longrepr}")
+    elif report.passed:
+        logger.info(f"Test {report.nodeid} passed.")
+    elif report.skipped:
+        logger.warning(f"Test {report.nodeid} skipped.")
