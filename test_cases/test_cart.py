@@ -2,16 +2,16 @@ import time
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from utilities.read_properties import ReadConfig
 from utilities.custom_logger import LogMaker
 from base_pages.LoginPage import LoginPage
 from base_pages.AllItems import AllItems
 from base_pages.Cart import Cart
 from base_pages.ExpandedList import ExpandedList
 from utilities.assertions import Assertion
+from configurations.config import LOGIN_URL
+
 
 class TestCart:
-    login_url = ReadConfig.get_login_page_url()
     valid_username = 'standard_user'
     valid_password = 'secret_sauce'
     logger = LogMaker.log_gen()
@@ -22,7 +22,7 @@ class TestCart:
         self.logger.info("***test_verify_cart_counter_visible***")
         self.driver = setup
         self.login_page = LoginPage(self.driver)
-        self.login_page.open_login_page(self.login_url)
+        self.login_page.open_login_page(LOGIN_URL)
         self.login_page.login(self.valid_username, self.valid_password)
 
         all_items = AllItems(self.driver)
@@ -38,7 +38,7 @@ class TestCart:
         self.logger.info("***verify_product_visible_in_cart***")
         self.driver = setup
         self.login_page = LoginPage(self.driver)
-        self.login_page.open_login_page(self.login_url)
+        self.login_page.open_login_page(LOGIN_URL)
         self.login_page.login(self.valid_username, self.valid_password)
 
         self.all_items = AllItems(self.driver)

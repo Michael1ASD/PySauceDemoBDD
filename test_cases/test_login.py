@@ -1,13 +1,14 @@
 from selenium.webdriver.common.by import By
-from utilities.read_properties import ReadConfig
+# from utilities.read_properties import ReadConfig
 from utilities.custom_logger import LogMaker
 from base_pages.LoginPage import LoginPage
 from base_pages.ExpandedList import ExpandedList
 from utilities.assertions import Assertion
+from configurations.config import LOGIN_URL
 import pytest
 
 class TestLogin:
-    login_url = ReadConfig.get_login_page_url()
+    # login_url = ReadConfig.get_login_page_url()
     valid_username = 'standard_user'
     valid_password = 'secret_sauce'
     invalid_username = 'Invalidusername'
@@ -18,7 +19,7 @@ class TestLogin:
         self.logger.info("***test_valid_title_started***")
         self.driver = setup
         self.login_page = LoginPage(self.driver)
-        self.login_page.open_login_page(self.login_url)
+        self.login_page.open_login_page(LOGIN_URL)
 
         actual_title = self.driver.title
         expected_title = 'Swag Labs'
@@ -39,7 +40,7 @@ class TestLogin:
         self.logger.info("***test_valid_login_started***")
         self.driver = setup
         self.login_page = LoginPage(self.driver)
-        self.login_page.open_login_page(self.login_url)
+        self.login_page.open_login_page(LOGIN_URL)
         self.login_page.login(self.valid_username, self.valid_password)
 
         expected_element = (By.XPATH, "//div[@class='app_logo']")
@@ -53,7 +54,7 @@ class TestLogin:
     def test_invalid_login_by_username(self, setup):
         self.logger.info("***test_invalid_login_by_username_started***")
         self.driver = setup
-        self.driver.get(self.login_url)
+        self.driver.get(LOGIN_URL)
         self.login_page = LoginPage(self.driver)
         self.login_page.login(self.invalid_username, self.valid_password)
 
@@ -64,7 +65,7 @@ class TestLogin:
     def test_invalid_login_by_password(self, setup):
         self.logger.info("***test_invalid_login_by_password_started***")
         self.driver = setup
-        self.driver.get(self.login_url)
+        self.driver.get(LOGIN_URL)
         self.login_page = LoginPage(self.driver)
         self.login_page.login(self.valid_username, self.invalid_password)
 
@@ -75,7 +76,7 @@ class TestLogin:
     def test_logout(self, setup):
         self.logger.info("***test_logout***")
         self.driver = setup
-        self.driver.get(self.login_url)
+        self.driver.get(LOGIN_URL)
         self.login_page = LoginPage(self.driver)
         self.login_page.login(self.valid_username, self.valid_password)
         self.expanded_list = ExpandedList(self.driver)

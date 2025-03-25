@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from configurations.config import LOGIN_URL
 
 
 class LoginPage:
@@ -10,7 +11,7 @@ class LoginPage:
     def __init__(self, driver):
         self.driver = driver
 
-    def open_login_page(self, url):
+    def open_login_page(self, url=LOGIN_URL):
         self.driver.get(url)
 
     def _enter_login(self, username):

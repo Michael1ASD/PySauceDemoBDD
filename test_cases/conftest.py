@@ -1,8 +1,6 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from base_pages.LoginPage import LoginPage
-from utilities.read_properties import ReadConfig
 
 
 @pytest.fixture
@@ -18,11 +16,3 @@ def setup():
     chrome_options.add_argument("--log-level=ALL")
     driver = webdriver.Chrome(options=chrome_options)
     return driver
-
-@pytest.fixture(scope="class")
-def test_data():
-    return {
-        'login_url': ReadConfig.get_login_page_url(),
-        'valid_username': 'standard_user',
-        'valid_password': 'secret_sauce'
-    }
