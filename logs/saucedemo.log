@@ -1752,3 +1752,74 @@ E       AttributeError: 'NoneType' object has no attribute 'get'
 2025-03=26 10:02:50:INFO:***test_logout***
 2025-03=26 10:02:54:INFO:Test test_cases/test_login.py::TestLogin::test_logout passed.
 2025-03=26 10:02:54:INFO:Test test_cases/test_login.py::TestLogin::test_logout passed.
+2025-03=26 10:10:25:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:10:27:INFO:Test test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:10:27:ERROR:Test test_cart.py::TestCart::test_verify_cart_counter_visible failed. Reason: self = <test_cases.test_cart.TestCart object at 0x00000200691E6A50>
+setup = <selenium.webdriver.chrome.webdriver.WebDriver (session="d9952430cb6cf15c3337551723a070e5")>
+
+    def test_verify_cart_counter_visible(self, setup):
+>       shopping_cart_counter = self.driver.find_element(By.XPATH, "//span[@class='shopping_cart_badge']")
+E       AttributeError: 'TestCart' object has no attribute 'driver'
+
+test_cart.py:21: AttributeError
+2025-03=26 10:10:27:INFO:Test test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:10:48:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:10:50:INFO:Test test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:10:50:ERROR:Test test_cart.py::TestCart::test_verify_cart_counter_visible failed. Reason: self = <test_cases.test_cart.TestCart object at 0x0000019CE506AA80>
+setup = <selenium.webdriver.chrome.webdriver.WebDriver (session="05247ca15ab4faa539714dbd913e0fb3")>
+
+    def test_verify_cart_counter_visible(self, setup):
+>       shopping_cart_counter = self.driver.find_element(By.XPATH, "//span[@class='shopping_cart_badge']")
+E       AttributeError: 'TestCart' object has no attribute 'driver'
+
+test_cart.py:21: AttributeError
+2025-03=26 10:10:50:INFO:Test test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:11:20:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:11:22:INFO:Test test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:11:22:INFO:***test_verify_cart_counter_visible***
+2025-03=26 10:11:24:INFO:Test test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:11:24:INFO:Test test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:17:02:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:17:04:INFO:Test test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:17:04:INFO:***test_verify_cart_counter_visible***
+2025-03=26 10:17:05:INFO:Test test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:17:05:INFO:Test test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:18:55:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:18:56:INFO:Test test_cases/test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:18:56:INFO:***test_verify_cart_counter_visible***
+2025-03=26 10:18:58:INFO:Test test_cases/test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:18:58:INFO:Test test_cases/test_cart.py::TestCart::test_verify_cart_counter_visible passed.
+2025-03=26 10:18:58:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:19:00:INFO:Test test_cases/test_cart.py::TestCart::test_verify_product_visible_in_cart passed.
+2025-03=26 10:19:00:INFO:***verify_product_visible_in_cart***
+2025-03=26 10:19:03:INFO:Test test_cases/test_cart.py::TestCart::test_verify_product_visible_in_cart passed.
+2025-03=26 10:19:03:INFO:Test test_cases/test_cart.py::TestCart::test_verify_product_visible_in_cart passed.
+2025-03=26 10:19:03:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:19:04:INFO:Test test_cases/test_checkout.py::TestCheckout::test_verify_successful_checkout passed.
+2025-03=26 10:19:09:INFO:Test test_cases/test_checkout.py::TestCheckout::test_verify_successful_checkout passed.
+2025-03=26 10:19:09:INFO:Test test_cases/test_checkout.py::TestCheckout::test_verify_successful_checkout passed.
+2025-03=26 10:19:09:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:19:12:INFO:Test test_cases/test_login.py::TestLogin::test_valid_title passed.
+2025-03=26 10:19:14:INFO:***test_valid_title_passed***
+2025-03=26 10:19:14:INFO:Test test_cases/test_login.py::TestLogin::test_valid_title passed.
+2025-03=26 10:19:14:INFO:Test test_cases/test_login.py::TestLogin::test_valid_title passed.
+2025-03=26 10:19:15:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:19:16:INFO:Test test_cases/test_login.py::TestLogin::test_valid_login passed.
+2025-03=26 10:19:16:INFO:***test_valid_login_started***
+2025-03=26 10:19:19:INFO:Test test_cases/test_login.py::TestLogin::test_valid_login passed.
+2025-03=26 10:19:19:INFO:Test test_cases/test_login.py::TestLogin::test_valid_login passed.
+2025-03=26 10:19:20:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:19:21:INFO:Test test_cases/test_login.py::TestLogin::test_invalid_login_by_username passed.
+2025-03=26 10:19:21:INFO:***test_invalid_login_by_username_started***
+2025-03=26 10:19:23:INFO:Test test_cases/test_login.py::TestLogin::test_invalid_login_by_username passed.
+2025-03=26 10:19:23:INFO:Test test_cases/test_login.py::TestLogin::test_invalid_login_by_username passed.
+2025-03=26 10:19:24:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:19:25:INFO:Test test_cases/test_login.py::TestLogin::test_invalid_login_by_password passed.
+2025-03=26 10:19:25:INFO:***test_invalid_login_by_password_started***
+2025-03=26 10:19:27:INFO:Test test_cases/test_login.py::TestLogin::test_invalid_login_by_password passed.
+2025-03=26 10:19:27:INFO:Test test_cases/test_login.py::TestLogin::test_invalid_login_by_password passed.
+2025-03=26 10:19:28:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 10:19:29:INFO:Test test_cases/test_login.py::TestLogin::test_logout passed.
+2025-03=26 10:19:29:INFO:***test_logout***
+2025-03=26 10:19:33:INFO:Test test_cases/test_login.py::TestLogin::test_logout passed.
+2025-03=26 10:19:33:INFO:Test test_cases/test_login.py::TestLogin::test_logout passed.

@@ -22,16 +22,16 @@ class TestCart:
 
         self.logger.info("***test_verify_cart_counter_visible***")
         self.driver = setup
-        self.login_page = LoginPage(self.driver)
-        self.login_page.open_login_page(LOGIN_URL)
-        self.login_page.login(VALID_USERNAME, VALID_PASSWORD)
+        login_page = LoginPage(self.driver)
+        login_page.open_login_page(LOGIN_URL)
+        login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
         all_items = AllItems(self.driver)
         all_items.verify_cart_is_empty()
         all_items.add_product_to_cart_by_name("Sauce Labs Backpack")
 
-        self.assertion = Assertion(self.driver)
-        self.assertion.assert_element_visible(shopping_cart_counter)
+        assertion = Assertion(self.driver)
+        assertion.assert_element_visible(shopping_cart_counter)
 
     @pytest.mark.smoke
     def test_verify_product_visible_in_cart(self, setup):
@@ -39,15 +39,15 @@ class TestCart:
 
         self.logger.info("***verify_product_visible_in_cart***")
         self.driver = setup
-        self.login_page = LoginPage(self.driver)
-        self.login_page.open_login_page(LOGIN_URL)
-        self.login_page.login(VALID_USERNAME, VALID_PASSWORD)
+        login_page = LoginPage(self.driver)
+        login_page.open_login_page(LOGIN_URL)
+        login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
-        self.all_items = AllItems(self.driver)
-        self.all_items.verify_cart_is_empty()
-        self.all_items.add_product_to_cart_by_name("Sauce Labs Backpack")
-        self.all_items.open_cart()
+        all_items = AllItems(self.driver)
+        all_items.verify_cart_is_empty()
+        all_items.add_product_to_cart_by_name("Sauce Labs Backpack")
+        all_items.open_cart()
 
-        self.assertion = Assertion(self.driver)
-        self.assertion.assert_element_visible(expected_product)
+        assertion = Assertion(self.driver)
+        assertion.assert_element_visible(expected_product)
 

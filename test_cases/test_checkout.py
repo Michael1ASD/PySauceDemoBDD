@@ -36,8 +36,8 @@ class TestCheckout:
         verification = Assertion(self.driver)
         verification.assert_element_visible((By.XPATH, "//h2[text()='Thank you for your order!']"))
 
-        self.expanded_list = ExpandedList(self.driver)
-        self.expanded_list.logout()
+        expanded_list = ExpandedList(self.driver)
+        expanded_list.logout()
         self.driver.close()
 
 

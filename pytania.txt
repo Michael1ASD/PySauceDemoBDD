@@ -50,7 +50,6 @@ jakie są korzyści z inicjonalizowania instancji klasy:
 --------------
 
 2025-03-25
-
 Nie działa mi konfiguracja w Pycharm DEV/PROD
 Zmienne środowiskowe ustawione
 
@@ -61,6 +60,8 @@ FAILED test_cases/test_login.py::TestLogin::test_valid_login - selenium.common.e
 FAILED test_cases/test_login.py::TestLogin::test_invalid_login_by_username - selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_NAME_NOT_RESOLVED
 FAILED test_cases/test_login.py::TestLogin::test_invalid_login_by_password - selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_NAME_NOT_RESOLVED
 FAILED test_cases/test_login.py::TestLogin::test_logout - selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_NAME_NOT_RESOLVED
+
+
 
 
 

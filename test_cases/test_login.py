@@ -19,9 +19,9 @@ class TestLogin:
     def test_valid_title(self,setup):
         # self.logger.info("***test_valid_title_started***")
         self.driver = setup
-        self.login_page = LoginPage(self.driver)
+        login_page = LoginPage(self.driver)
         allure.step("Step 1: Open login page")
-        self.login_page.open_login_page(LOGIN_URL)
+        login_page.open_login_page(LOGIN_URL)
 
         actual_title = self.driver.title
         expected_title = 'Swag Labs'
@@ -43,18 +43,18 @@ class TestLogin:
     def test_valid_login(self, setup):
         self.logger.info("***test_valid_login_started***")
         self.driver = setup
-        self.login_page = LoginPage(self.driver)
+        login_page = LoginPage(self.driver)
         allure.step("Step 1: Open login page")
-        self.login_page.open_login_page(LOGIN_URL)
+        login_page.open_login_page(LOGIN_URL)
         allure.step("Step 2: Enter username, password and submit")
-        self.login_page.login(VALID_USERNAME, VALID_PASSWORD)
+        login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
         expected_element = (By.XPATH, "//div[@class='app_logo']")
         visibility_tester = Assertion(self.driver) # Czy potrzeba tworzyć rzeczywiście nowy obiekt Assertion?
         visibility_tester.assert_element_visible(expected_element) # Obsłużenie sytuacji Assert False?
 
-        self.expanded_list = ExpandedList(self.driver)
-        self.expanded_list.logout()
+        expanded_list = ExpandedList(self.driver)
+        expanded_list.logout()
         self.driver.close()
 
     @allure.feature('User Login')
@@ -63,8 +63,8 @@ class TestLogin:
         self.logger.info("***test_invalid_login_by_username_started***")
         self.driver = setup
         self.driver.get(LOGIN_URL)
-        self.login_page = LoginPage(self.driver)
-        self.login_page.login(self.invalid_username, VALID_PASSWORD)
+        login_page = LoginPage(self.driver)
+        login_page.login(self.invalid_username, VALID_PASSWORD)
 
         assert self.driver.find_element(By.CSS_SELECTOR, "h3[data-test='error']").text == 'Epic sadface: Username and password do not match any user in this service'
 
@@ -76,8 +76,8 @@ class TestLogin:
         self.logger.info("***test_invalid_login_by_password_started***")
         self.driver = setup
         self.driver.get(LOGIN_URL)
-        self.login_page = LoginPage(self.driver)
-        self.login_page.login(VALID_USERNAME, self.invalid_password)
+        login_page = LoginPage(self.driver)
+        login_page.login(VALID_USERNAME, self.invalid_password)
 
         assert self.driver.find_element(By.CSS_SELECTOR,"h3[data-test='error']").text == 'Epic sadface: Username and password do not match any user in this service'
 
