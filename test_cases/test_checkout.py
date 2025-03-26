@@ -1,5 +1,6 @@
 import time
 
+import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from utilities.custom_logger import LogMaker
@@ -15,6 +16,7 @@ class TestCheckout:
     valid_password = 'secret_sauce'
     logger = LogMaker.log_gen()
 
+    @pytest.mark.smoke
     def test_verify_successful_checkout(self, setup):
         self.driver = setup
         login_page = LoginPage(self.driver)

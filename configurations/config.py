@@ -2,7 +2,6 @@ from decouple import Config, RepositoryEnv
 import os
 
 env = os.getenv('APP_ENV', 'dev')
-print(f"Loaded APP_ENV: {env}")
 base_path = r'C:\Development\PySauceDemo\configurations'
 env_file = os.path.join(base_path, f'config.{env}.env')
 

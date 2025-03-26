@@ -37,6 +37,7 @@ class TestLogin:
             self.driver.close()
             assert False
 
+    @pytest.mark.smoke
     @allure.feature('User Login')
     @allure.story('Valid login')
     def test_valid_login(self, setup):
@@ -82,16 +83,18 @@ class TestLogin:
 
         self.driver.close()
 
+    @pytest.mark.smoke
     @allure.feature('User Login')
     @allure.story('Logout')
     def test_logout(self, setup):
         self.logger.info("***test_logout***")
         self.driver = setup
         self.driver.get(LOGIN_URL)
-        self.login_page = LoginPage(self.driver)
-        self.login_page.login(VALID_USERNAME, VALID_PASSWORD)
-        self.expanded_list = ExpandedList(self.driver)
-        self.expanded_list.logout()
+        login_page = LoginPage(self.driver)
+        login_page.login(VALID_USERNAME, VALID_PASSWORD)
+
+        expanded_list = ExpandedList(self.driver)
+        expanded_list.logout()
 
         expected_element = (By.XPATH, "//div[@class='login_logo']")
         visibility_tester = Assertion(self.driver)
