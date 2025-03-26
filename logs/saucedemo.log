@@ -1823,3 +1823,8 @@ test_cart.py:21: AttributeError
 2025-03=26 10:19:29:INFO:***test_logout***
 2025-03=26 10:19:33:INFO:Test test_cases/test_login.py::TestLogin::test_logout passed.
 2025-03=26 10:19:33:INFO:Test test_cases/test_login.py::TestLogin::test_logout passed.
+2025-03=26 11:39:09:WARNING:The chromedriver version (133.0.6943.126) detected in PATH at C:\Bin\chromedriver.exe might not be compatible with the detected chrome version (134.0.6998.119); currently, chromedriver 134.0.6998.165 is recommended for chrome 134.*, so it is advised to delete the driver in PATH and retry
+2025-03=26 11:39:11:INFO:Test test_login.py::TestLogin::test_valid_login passed.
+2025-03=26 11:39:11:INFO:***test_valid_login_started***
+2025-03=26 11:39:13:INFO:Test test_login.py::TestLogin::test_valid_login passed.
+2025-03=26 11:39:13:INFO:Test test_login.py::TestLogin::test_valid_login passed.

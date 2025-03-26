@@ -1,3 +1,4 @@
+from pytest_bdd import given, when, then, scenarios
 from selenium.webdriver.common.by import By
 # from utilities.read_properties import ReadConfig
 from utilities.custom_logger import LogMaker
@@ -43,8 +44,10 @@ class TestLogin:
     def test_valid_login(self, setup):
         self.logger.info("***test_valid_login_started***")
         self.driver = setup
+
         login_page = LoginPage(self.driver)
         allure.step("Step 1: Open login page")
+
         login_page.open_login_page(LOGIN_URL)
         allure.step("Step 2: Enter username, password and submit")
         login_page.login(VALID_USERNAME, VALID_PASSWORD)

@@ -1,25 +1,24 @@
-python decouple
-config.env
+Zrobić pełen order
+Zmienić ilość produktów i sprawdzić czy cena dobrze się uaktualnia"
+Sprawdzić czy ceny i ilości się zgadzają na Checkoucie
+Na ostatnim kroku anulować zamówienie, sprawdzić czy produkty zostają w koszyku w odpowiednich ilościach
+
+
 typowanie
 dobre praktywki: hinty - dodać typowanie w nawiasach do metody i rezultat po nawiaasie
 dodać do parametrów domyślne wartości
-polling frequency
 BDD
 logowanie w testach
 
 
-logger jako dekorator do funkcji w klasach podrzędnych -
+logger jako dekorator do funkcji w klasach podrzędnych
 brak trace'a z loggera z wykonywania testów
 dodać logger do handlers
 
 python bdd
-
 log_gen - bez log-gen
 
-allure
-
 @dekorator parametrize
-mark
 
 
 
