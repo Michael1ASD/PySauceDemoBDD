@@ -18,13 +18,13 @@ class TestCheckout:
         expected_confirmation_element = (By.XPATH, "//h2[text()='Thank you for your order!']")
 
         driver = setup
-        sut = LoginPage(driver)
-        sut.open_login_page(LOGIN_URL)
-        sut.login(VALID_USERNAME, VALID_PASSWORD)
+        login_page = LoginPage(driver)
+        login_page.open_login_page(LOGIN_URL)
+        login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
         all_items = AllItems(driver)
         all_items.verify_cart_is_empty()
-        all_items.add_product_to_cart_by_name("Sauce Labs Bike Light")
+        all_items.add_product_to_cart_by_name("Sauce Labs Bike Light1")
         all_items.open_cart()
 
         cart = Cart(driver)
@@ -32,4 +32,4 @@ class TestCheckout:
         cart.enter_checkout_credentials_and_continue()
         cart.finish_checkout()
 
-        sut.assert_element_visible(*expected_confirmation_element)
+        cart.assert_element_visible(*expected_confirmation_element)

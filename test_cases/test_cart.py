@@ -36,15 +36,15 @@ class TestCart:
         expected_product = (By.XPATH,"//div[@class='inventory_item_name' and contains(text(), 'Sauce Labs Backpack')]")
 
         driver = setup
-        sut = LoginPage(driver)
-        sut.open_login_page(LOGIN_URL)
-        sut.login(VALID_USERNAME, VALID_PASSWORD)
+        login_page = LoginPage(driver)
+        login_page.open_login_page(LOGIN_URL)
+        login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
         all_items = AllItems(driver)
         all_items.verify_cart_is_empty()
         all_items.add_product_to_cart_by_name("Sauce Labs Backpack")
         all_items.open_cart()
 
-        sut.assert_element_visible(*expected_product)
+        all_items.assert_element_visible(*expected_product)
 
 

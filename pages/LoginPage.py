@@ -32,8 +32,3 @@ class LoginPage(BasePage):
         self._enter_login(username)
         self._enter_password(password)
         self._click_login()
-
-        try:
-            self.wait_for_alert_and_accept()
-        except TimeoutException:
-            pass
