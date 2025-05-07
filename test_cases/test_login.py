@@ -14,8 +14,7 @@ class TestLogin:
     @allure.feature('User Login')
     @allure.story('Valid Login Title')
     def test_valid_title(self,setup):
-        # expected_title = 'Swag Labs'
-        expected_title = 'Swag Labs1'
+        expected_title = 'Swag Labs'
 
         driver = setup
         login_page = LoginPage(driver)

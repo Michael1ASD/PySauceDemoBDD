@@ -24,7 +24,7 @@ class TestCheckout:
 
         all_items = AllItems(driver)
         all_items.verify_cart_is_empty()
-        all_items.add_product_to_cart_by_name("Sauce Labs Bike Light1")
+        all_items.add_product_to_cart_by_name("Sauce Labs Bike Light")
         all_items.open_cart()
 
         cart = Cart(driver)
