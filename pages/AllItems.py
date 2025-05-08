@@ -38,6 +38,23 @@ class AllItems(BasePage):
         add_to_cart_button = product_element.find_element(By.XPATH, ".//ancestor::div[@class='inventory_item']//button[contains(text(), 'Add to cart')]")
         add_to_cart_button.click()
 
+    def enter_product_details_by_name(self, product_name: str):
+        """
+        Opens product details based on its name displayed on the page.
+
+        Args:
+            product_name (str): The name of the product as displayed in the inventory items.
+                                It should match exactly with the displayed text in the application.
+
+        Example:
+            item = AllItems(driver)
+            item.add_product_to_cart_by_name("Sauce Labs Backpack")
+        """
+
+        product_name_xpath = f"//div[@class='inventory_item_name ' and text()='{product_name}']"
+        product_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, product_name_xpath)))
+        product_element.click()
+
     def return_price_by_product_name(self, product_name: str) -> str:
         """
         Retrieves the price of a product based on its name.
@@ -59,3 +76,4 @@ class AllItems(BasePage):
         product_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, product_name_xpath)))
         price_element = product_element.find_element(By.XPATH, ".//ancestor::div[@class='inventory_item']//div[@class='inventory_item_price']")
         return price_element.text
+

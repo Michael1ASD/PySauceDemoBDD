@@ -22,7 +22,7 @@ class Cart(BasePage):
         self.wait_for_element_and_click(*self.cart_continue_shopping_button)
 
     @allure.step("Checkout from cart view")
-    def click_checkout_from_cart_view(self):
+    def checkout_from_cart_view(self):
         self.wait_for_element_and_click(*self.cart_checkout_button)
         # self.click(*self.cart_checkout_button)
 

@@ -30,13 +30,13 @@ class ExpandedList(BasePage):
         self.wait_for_element_and_click(*options[option_key])
 
     @allure.step("Go to All items")
-    def logout(self):
+    def display_all_items(self):
         self._expand_burger()
         self._select_option_from_burger("All Items")
 
     @allure.step("Logout")
     def logout(self):
-        self._expand_burger()
+        self.reset_app_state()
         self._select_option_from_burger("Logout")
 
     @allure.step("Reset app state")
