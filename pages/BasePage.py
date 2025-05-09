@@ -64,6 +64,7 @@ class BasePage:
             assert False, f"Element with locator ({by}, {value}) not visible: {str(e)}"
 
     @staticmethod
+    @allure.step("Assert value in text")
     def assert_value_in_text(value,text):
         value_str = str(value)
         if value_str not in text:
