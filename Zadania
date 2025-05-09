@@ -1,4 +1,4 @@
-Zrobić pełen order
+Zrobione: Zrobić pełen order
 Zmienić ilość produktów i sprawdzić czy cena dobrze się uaktualnia"
 Sprawdzić czy ceny i ilości się zgadzają na Checkoucie
 Na ostatnim kroku anulować zamówienie, sprawdzić czy produkty zostają w koszyku w odpowiednich ilościach
@@ -20,6 +20,8 @@ log_gen - bez log-gen
 
 @dekorator parametrize
 
+
+@
 
 
 

@@ -2,14 +2,13 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pages.BasePage import BasePage
 
 
-class AllItems:
+class AllItems(BasePage):
     shopping_cart_counter = (By.XPATH, "//span[@class='shopping_cart_badge']")
     shopping_cart_loc = (By.XPATH, "//a[@class='shopping_cart_link']")
 
-    def __init__(self, driver):
-        self.driver = driver
 
     def open_all_items_page(self):
         self.driver.get("https://www.saucedemo.com/inventory.html")
@@ -19,7 +18,7 @@ class AllItems:
         assert is_invisible, f"Cart is not empty"
 
     def open_cart(self):
-        self.driver.find_element(*self.shopping_cart_loc).click()
+        self.click(*self.shopping_cart_loc)
 
     def add_product_to_cart_by_name(self, product_name: str):
         """
@@ -39,9 +38,9 @@ class AllItems:
         add_to_cart_button = product_element.find_element(By.XPATH, ".//ancestor::div[@class='inventory_item']//button[contains(text(), 'Add to cart')]")
         add_to_cart_button.click()
 
-    def return_price_by_product_name(self, product_name: str) -> str:
+    def enter_product_details_by_name(self, product_name: str):
         """
-        Adds a product to the shopping cart based on its name displayed on the page.
+        Opens product details based on its name displayed on the page.
 
         Args:
             product_name (str): The name of the product as displayed in the inventory items.
@@ -54,5 +53,27 @@ class AllItems:
 
         product_name_xpath = f"//div[@class='inventory_item_name ' and text()='{product_name}']"
         product_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, product_name_xpath)))
+        product_element.click()
+
+    def return_price_by_product_name(self, product_name: str) -> str:
+        """
+        Retrieves the price of a product based on its name.
+
+        The method searches for the product element on the page using the product name,
+        then locates and returns the price text associated with that product.
+
+        Args:
+            product_name (str): The name of the product to look for.
+
+        Returns:
+            str: The price of the product, e.g., "$29.99".
+
+        Raises:
+            TimeoutException: If the product is not found within the specified wait time.
+        """
+
+        product_name_xpath = f"//div[@class='inventory_item_name ' and text()='{product_name}']"
+        product_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, product_name_xpath)))
         price_element = product_element.find_element(By.XPATH, ".//ancestor::div[@class='inventory_item']//div[@class='inventory_item_price']")
         return price_element.text
+

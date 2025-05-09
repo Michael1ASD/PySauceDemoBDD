@@ -1,30 +1,33 @@
+import time
+
 from selenium import webdriver
+from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
 from configurations.config import LOGIN_URL
+from pages.BasePage import BasePage
+import allure
 
-
-class LoginPage:
+class LoginPage(BasePage):
     username_loc = (By.XPATH, "//input[@id='user-name']")
     password_loc = (By.XPATH, "//input[@id='password']")
     login_button_loc = (By.XPATH, "//input[@id='login-button']")
 
-    def __init__(self, driver):
-        self.driver = driver
-
+    @allure.step("Open login page")
     def open_login_page(self, url=LOGIN_URL):
         self.driver.get(url)
 
     def _enter_login(self, username):
-        self.driver.find_element(*self.username_loc).clear()
-        self.driver.find_element(*self.username_loc).send_keys(username)
+        self.input_text(*self.username_loc, username)
 
     def _enter_password(self, password):
-        self.driver.find_element(*self.password_loc).clear()
-        self.driver.find_element(*self.password_loc).send_keys(password)
+        self.input_text(*self.password_loc, password)
 
     def _click_login(self):
-        self.driver.find_element(*self.login_button_loc).click()
+        self.click(*self.login_button_loc)
 
+    @allure.step("Login")
     def login(self, username, password):
         self._enter_login(username)
         self._enter_password(password)
