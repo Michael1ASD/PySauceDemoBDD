@@ -22,7 +22,7 @@ class TestLogin:
 
         assert driver.title == expected_title
 
-    @pytest.mark.smoke
+    # @pytest.mark.smoke
     @allure.feature('User Login')
     @allure.story('Valid login')
     def test_valid_login(self, setup):
@@ -54,7 +54,7 @@ class TestLogin:
 
         assert driver.find_element(By.CSS_SELECTOR,"h3[data-test='error']").text == 'Epic sadface: Username and password do not match any user in this service'
 
-    @pytest.mark.smoke
+    # @pytest.mark.smoke
     @allure.feature('User Login')
     @allure.story('Logout')
     def test_logout(self, setup, iteration):

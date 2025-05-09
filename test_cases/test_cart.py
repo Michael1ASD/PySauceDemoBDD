@@ -4,6 +4,8 @@ import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+
+from pages.BasePage import BasePage
 from pages.LoginPage import LoginPage
 from pages.AllItems import AllItems
 from pages.Cart import Cart
@@ -31,9 +33,9 @@ class TestCart:
 
     @pytest.mark.smoke
     @allure.feature('Cart')
-    @allure.story('Product in cart')
-    def test_verify_product_visible_in_cart(self, setup):
-        expected_product = (By.XPATH,"//div[@class='inventory_item_name' and contains(text(), 'Sauce Labs Backpack')]")
+    @allure.story('Verify total value of cart')
+    def test_total_cart_value(self, setup):
+        # expected_product = (By.XPATH,"//div[@class='inventory_item_name' and contains(text(), 'Sauce Labs Backpack')]")
 
         driver = setup
         login_page = LoginPage(driver)
@@ -43,11 +45,36 @@ class TestCart:
         all_items = AllItems(driver)
         all_items.verify_cart_is_empty()
         all_items.add_product_to_cart_by_name("Sauce Labs Backpack")
+        expected_backpack_price = all_items.return_price_by_product_name("Sauce Labs Backpack")
+        expected_clean_backpack_price = expected_backpack_price.replace('$', '')
+        expected_backpack_tax = Cart.calculate_tax_value(expected_clean_backpack_price)
+
+        all_items.add_product_to_cart_by_name("Sauce Labs Bolt T-Shirt")
+        expected_t_shirt_price = all_items.return_price_by_product_name("Sauce Labs Bolt T-Shirt")
+        expected_clean_t_shirt_price = expected_t_shirt_price.replace('$', '')
+        expected_t_shirt_tax = Cart.calculate_tax_value(expected_clean_t_shirt_price)
+
+        all_items.add_product_to_cart_by_name("Sauce Labs Bike Light")
+        expected_bike_light_price = all_items.return_price_by_product_name("Sauce Labs Bike Light")
+        expected_clean_bike_light_price = expected_bike_light_price.replace('$', '')
+        expected_bike_light_tax = Cart.calculate_tax_value(expected_clean_bike_light_price)
+
+        expected_totalnet_value = round(float(expected_clean_backpack_price) + float(expected_clean_t_shirt_price) + float(expected_clean_bike_light_price),2)
+        expected_tax_value = round(float(expected_backpack_tax) + float(expected_t_shirt_tax) + float(expected_bike_light_tax),2)
+        expected_total_value_string = round(expected_totalnet_value + expected_tax_value,2)
+
         all_items.open_cart()
+        cart = Cart(driver)
+        cart.checkout_from_cart_view()
+        cart.enter_checkout_credentials_and_continue()
 
-        all_items.assert_element_visible(*expected_product)
+        actual_totalnet_value = cart.return_cart_totalnet_value()
+        clean_actual_totalnet_value = actual_totalnet_value.replace('$', '')
+        actual_totaltax_value = cart.return_cart_totaltax_value()
+        clean_actual_totaltax_value = actual_totaltax_value.replace('$', '')
+        actual_total_value = cart.return_cart_total_value()
+        clean_actual_total_value = actual_total_value.replace('$', '')
 
-
-
-
-
+        BasePage.assert_value_in_text(expected_totalnet_value, clean_actual_totalnet_value)
+        BasePage.assert_value_in_text(expected_tax_value, clean_actual_totaltax_value)
+        BasePage.assert_value_in_text(expected_total_value_string, clean_actual_total_value)

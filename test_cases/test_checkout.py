@@ -14,7 +14,7 @@ class TestCheckout:
     valid_username = 'standard_user'
     valid_password = 'secret_sauce'
 
-    @pytest.mark.smoke
+    # @pytest.mark.smoke
     @allure.feature('Checkout')
     @allure.story('Successful order')
     def test_verify_successful_order(self, setup):
@@ -37,6 +37,7 @@ class TestCheckout:
 
         cart.assert_element_visible(*expected_confirmation_element)
 
+    # @pytest.mark.smoke
     @allure.feature('Checkout')
     @allure.story('Cancel order')
     def test_verify_cancel_order(self, setup):
@@ -58,26 +59,3 @@ class TestCheckout:
         cart.cancel_checkout()
 
         cart.assert_element_visible(*expected_element_after_cancel)
-
-    @allure.feature('Checkout')
-    @allure.story('Verify total price for multiple products')
-    def test_verify_cancel_order(self, setup):
-        expected_element_after_cancel = (By.XPATH, "//span[@class='title']")
-
-        driver = setup
-        login_page = LoginPage(driver)
-        login_page.open_login_page(LOGIN_URL)
-        login_page.login(VALID_USERNAME, VALID_PASSWORD)
-
-        all_items = AllItems(driver)
-        all_items.verify_cart_is_empty()
-        all_items.add_product_to_cart_by_name("Sauce Labs Onesie")
-        all_items.open_cart()
-
-        cart = Cart(driver)
-        cart.checkout_from_cart_view()
-        cart.enter_checkout_credentials_and_continue()
-        cart.cancel_checkout()
-
-        cart.assert_element_visible(*expected_element_after_cancel)
-

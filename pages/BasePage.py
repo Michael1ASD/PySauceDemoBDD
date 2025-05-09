@@ -38,6 +38,17 @@ class BasePage:
         alert = WebDriverWait(self.driver, timeout).until(EC.alert_is_present())
         alert.accept()
 
+    def get_element_text(self,by,value):
+        """
+        Retrieves the text value of a web element.
+
+        :param driver: Selenium WebDriver instance
+        :param locator: Tuple with strategy and locator, e.g., (By.ID, 'element_id')
+        :return: Text content of the element
+        """
+        element = self.driver.find_element(by, value)
+        return element.text
+
 
     #Assertions
     @allure.step("Assert element is visible")
@@ -51,4 +62,10 @@ class BasePage:
             )
         except Exception as e:
             assert False, f"Element with locator ({by}, {value}) not visible: {str(e)}"
+
+    @staticmethod
+    def assert_value_in_text(value,text):
+        value_str = str(value)
+        if value_str not in text:
+            raise AssertionError(f"Value '{value_str}' not included in the text '{text}'.")
 

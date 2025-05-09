@@ -14,6 +14,9 @@ class Cart(BasePage):
     checkout_continue_button_loc = (By.XPATH, "//input[@id='continue']")
     finish_checkout_button = (By.XPATH, "//button[@id='finish']")
     cancel_checkout_button = (By.XPATH, "//button[@id='cancel']")
+    summary_totalnet_value_loc = (By.XPATH, "//div[@class='summary_subtotal_label']")
+    summary_tax_value_loc = (By.XPATH, "//div[@class='summary_tax_label']")
+    summary_totalgross_value_loc = (By.XPATH, "//div[@class='summary_total_label']")
 
 
     # Your Cart
@@ -24,7 +27,6 @@ class Cart(BasePage):
     @allure.step("Checkout from cart view")
     def checkout_from_cart_view(self):
         self.wait_for_element_and_click(*self.cart_checkout_button)
-        # self.click(*self.cart_checkout_button)
 
     # Checkout: Your Information
     def _enter_first_name(self, first_name="Jan"):
@@ -55,4 +57,16 @@ class Cart(BasePage):
     def finish_checkout(self):
         self.wait_for_element_and_click(*self.finish_checkout_button)
 
+    # Other
+    def return_cart_totalnet_value(self):
+        return self.get_element_text(*self.summary_totalnet_value_loc)
 
+    def return_cart_totaltax_value(self):
+        return self.get_element_text(*self.summary_tax_value_loc)
+
+    def return_cart_total_value(self):
+        return self.get_element_text(*self.summary_totalgross_value_loc)
+
+    @staticmethod
+    def calculate_tax_value(price):
+        return round(float(price) * 0.08,2)
