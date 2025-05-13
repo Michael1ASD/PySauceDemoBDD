@@ -6,6 +6,9 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+from configurations.config import LOGIN_URL, VALID_USERNAME, VALID_PASSWORD
+from pages.LoginPage import LoginPage
+
 
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome",
@@ -58,6 +61,13 @@ def driver(request):
 
     yield driver
     driver.quit()
+
+@pytest.fixture
+def login(driver):
+    login_page = LoginPage(driver)
+    login_page.open_login_page(LOGIN_URL)
+    login_page.login(VALID_USERNAME, VALID_PASSWORD)
+    return login_page
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):

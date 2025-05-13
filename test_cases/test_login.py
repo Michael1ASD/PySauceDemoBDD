@@ -52,13 +52,10 @@ class TestLogin:
     # @pytest.mark.smoke
     @allure.feature('User Login')
     @allure.story('Logout')
-    def test_logout(self, driver):
-        driver.get(LOGIN_URL)
-        login_page = LoginPage(driver)
-        login_page.login(VALID_USERNAME, VALID_PASSWORD)
+    def test_logout(self, driver,login):
 
         expanded_list = ExpandedList(driver)
         expanded_list.logout()
 
         expected_element = (By.XPATH, "//div[@class='login_logo']")
-        login_page.assert_element_visible(*expected_element)
+        expanded_list.assert_element_visible(*expected_element)

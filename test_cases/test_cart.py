@@ -17,12 +17,8 @@ class TestCart:
 
     @allure.feature('Cart')
     @allure.story('Cart counter')
-    def test_verify_cart_counter_visible(self, driver):
+    def test_verify_cart_counter_visible(self, driver, login):
         shopping_cart_counter = (By.XPATH, "//span[@class='shopping_cart_badge']")
-
-        login_page = LoginPage(driver)
-        login_page.open_login_page(LOGIN_URL)
-        login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
         all_items = AllItems(driver)
         all_items.verify_cart_is_empty()
@@ -33,26 +29,20 @@ class TestCart:
     @pytest.mark.smoke
     @allure.feature('Cart')
     @allure.story('Verify total value of cart')
-    def test_total_cart_value(self, driver):
-        login_page = LoginPage(driver)
-        login_page.open_login_page(LOGIN_URL)
-        login_page.login(VALID_USERNAME, VALID_PASSWORD)
+    def test_total_cart_value(self, driver, login):
 
         all_items = AllItems(driver)
         all_items.verify_cart_is_empty()
         all_items.add_product_to_cart_by_name("Sauce Labs Backpack")
         expected_backpack_price = all_items.return_price_by_product_name("Sauce Labs Backpack")
-        # expected_clean_backpack_price = expected_backpack_price.replace('$', '')
         expected_backpack_tax = Cart.calculate_tax_value(expected_backpack_price)
 
         all_items.add_product_to_cart_by_name("Sauce Labs Bolt T-Shirt")
         expected_t_shirt_price = all_items.return_price_by_product_name("Sauce Labs Bolt T-Shirt")
-        # expected_clean_t_shirt_price = expected_t_shirt_price.replace('$', '')
         expected_t_shirt_tax = Cart.calculate_tax_value(expected_t_shirt_price)
 
         all_items.add_product_to_cart_by_name("Sauce Labs Bike Light")
         expected_bike_light_price = all_items.return_price_by_product_name("Sauce Labs Bike Light")
-        # expected_clean_bike_light_price = expected_bike_light_price.replace('$', '')
         expected_bike_light_tax = Cart.calculate_tax_value(expected_bike_light_price)
 
         expected_totalnet_value = round(float(expected_backpack_price) + float(expected_t_shirt_price) + float(expected_bike_light_price),2)

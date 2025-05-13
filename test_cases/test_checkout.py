@@ -17,12 +17,8 @@ class TestCheckout:
     # @pytest.mark.smoke
     @allure.feature('Checkout')
     @allure.story('Successful order')
-    def test_verify_successful_order(self, driver):
+    def test_verify_successful_order(self, driver, login):
         expected_confirmation_element = (By.XPATH, "//h2[text()='Thank you for your order!']")
-
-        login_page = LoginPage(driver)
-        login_page.open_login_page(LOGIN_URL)
-        login_page.login(VALID_USERNAME, VALID_PASSWORD)
 
         all_items = AllItems(driver)
         all_items.verify_cart_is_empty()
