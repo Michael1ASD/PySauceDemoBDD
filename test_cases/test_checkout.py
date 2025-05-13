@@ -17,10 +17,9 @@ class TestCheckout:
     # @pytest.mark.smoke
     @allure.feature('Checkout')
     @allure.story('Successful order')
-    def test_verify_successful_order(self, setup):
+    def test_verify_successful_order(self, driver):
         expected_confirmation_element = (By.XPATH, "//h2[text()='Thank you for your order!']")
 
-        driver = setup
         login_page = LoginPage(driver)
         login_page.open_login_page(LOGIN_URL)
         login_page.login(VALID_USERNAME, VALID_PASSWORD)
@@ -40,10 +39,9 @@ class TestCheckout:
     # @pytest.mark.smoke
     @allure.feature('Checkout')
     @allure.story('Cancel order')
-    def test_verify_cancel_order(self, setup):
+    def test_verify_cancel_order(self, driver):
         expected_element_after_cancel = (By.XPATH, "//span[@class='title']")
 
-        driver = setup
         login_page = LoginPage(driver)
         login_page.open_login_page(LOGIN_URL)
         login_page.login(VALID_USERNAME, VALID_PASSWORD)

@@ -15,10 +15,9 @@ class TestProducts():
 
     @allure.feature('Product details')
     @allure.story('Add product to cart from product details')
-    def test_add_product_to_cart_from_product_details(self,setup):
+    def test_add_product_to_cart_from_product_details(self,driver):
         expected_confirmation_element = (By.XPATH, "//h2[text()='Thank you for your order!']")
 
-        driver = setup
         login_page = LoginPage(driver)
         login_page.open_login_page(LOGIN_URL)
         login_page.login(VALID_USERNAME, VALID_PASSWORD)

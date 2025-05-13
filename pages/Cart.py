@@ -2,6 +2,8 @@ import allure
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
+import unittest
+from unittest.mock import MagicMock
 
 
 class Cart(BasePage):
@@ -59,14 +61,15 @@ class Cart(BasePage):
 
     # Other
     def return_cart_totalnet_value(self):
-        return self.get_element_text(*self.summary_totalnet_value_loc)
+        return self.get_element_text(*self.summary_totalnet_value_loc).replace("$", "")
 
     def return_cart_totaltax_value(self):
-        return self.get_element_text(*self.summary_tax_value_loc)
+        return self.get_element_text(*self.summary_tax_value_loc).replace("$", "")
 
     def return_cart_total_value(self):
-        return self.get_element_text(*self.summary_totalgross_value_loc)
+        return self.get_element_text(*self.summary_totalgross_value_loc).replace("$", "")
 
     @staticmethod
     def calculate_tax_value(price):
         return round(float(price) * 0.08,2)
+

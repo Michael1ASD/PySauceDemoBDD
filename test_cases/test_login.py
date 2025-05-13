@@ -13,10 +13,9 @@ class TestLogin:
 
     @allure.feature('User Login')
     @allure.story('Valid Login Title')
-    def test_valid_title(self,setup):
+    def test_valid_title(self,driver):
         expected_title = 'Swag Labs'
 
-        driver = setup
         login_page = LoginPage(driver)
         login_page.open_login_page(LOGIN_URL)
 
@@ -25,9 +24,7 @@ class TestLogin:
     # @pytest.mark.smoke
     @allure.feature('User Login')
     @allure.story('Valid login')
-    def test_valid_login(self, setup):
-        driver = setup
-
+    def test_valid_login(self, driver):
         login_page = LoginPage(driver)
         login_page.open_login_page(LOGIN_URL)
         login_page.login(VALID_USERNAME, VALID_PASSWORD)
@@ -36,8 +33,7 @@ class TestLogin:
 
     @allure.feature('User Login')
     @allure.story('Invalid username')
-    def test_invalid_login_by_username(self, setup):
-        driver = setup
+    def test_invalid_login_by_username(self, driver):
         driver.get(LOGIN_URL)
         login_page = LoginPage(driver)
         login_page.login(self.invalid_username, VALID_PASSWORD)
@@ -46,8 +42,7 @@ class TestLogin:
 
     @allure.feature('User Login')
     @allure.story('Invalid password')
-    def test_invalid_login_by_password(self, setup):
-        driver = setup
+    def test_invalid_login_by_password(self, driver):
         driver.get(LOGIN_URL)
         login_page = LoginPage(driver)
         login_page.login(VALID_USERNAME, self.invalid_password)
@@ -57,8 +52,7 @@ class TestLogin:
     # @pytest.mark.smoke
     @allure.feature('User Login')
     @allure.story('Logout')
-    def test_logout(self, setup, iteration):
-        driver = setup
+    def test_logout(self, driver):
         driver.get(LOGIN_URL)
         login_page = LoginPage(driver)
         login_page.login(VALID_USERNAME, VALID_PASSWORD)

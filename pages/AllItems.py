@@ -75,5 +75,7 @@ class AllItems(BasePage):
         product_name_xpath = f"//div[@class='inventory_item_name ' and text()='{product_name}']"
         product_element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, product_name_xpath)))
         price_element = product_element.find_element(By.XPATH, ".//ancestor::div[@class='inventory_item']//div[@class='inventory_item_price']")
-        return price_element.text
+        price_element_text = price_element.text
+        clean_price_element_text = price_element_text.replace("$","")
+        return clean_price_element_text
 

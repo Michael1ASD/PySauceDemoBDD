@@ -13,7 +13,7 @@ def pytest_addoption(parser):
 
 
 @pytest.fixture
-def setup(request):
+def driver(request):
     browser_name = request.config.getoption("browser")
     driver = None
 
@@ -64,7 +64,7 @@ def pytest_runtest_makereport(item, call):
     outcome = yield
     rep = outcome.get_result()
     if rep.when == "call" and rep.failed:
-        driver = item.funcargs['setup']
+        driver = item.funcargs['driver']
         parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         screenshots_dir = os.path.join(parent_dir, 'screenshots')
         if not os.path.exists(screenshots_dir):
