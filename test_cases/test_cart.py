@@ -50,6 +50,7 @@ class TestCart:
         expected_total_value = round(expected_totalnet_value + expected_tax_value,2)
 
         all_items.open_cart()
+
         cart = Cart(driver)
         cart.checkout_from_cart_view()
         cart.enter_checkout_credentials_and_continue()
