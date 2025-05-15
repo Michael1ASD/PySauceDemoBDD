@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from pages.BasePage import BasePage
 import unittest
 from unittest.mock import MagicMock
+from pytest_bdd import scenario, given, when, then
 
 
 class Cart(BasePage):
