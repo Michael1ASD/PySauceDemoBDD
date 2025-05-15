@@ -9,10 +9,6 @@ from pytest_bdd import scenarios, given, when, then
 from configurations.config import LOGIN_URL, VALID_USERNAME, VALID_PASSWORD
 from pages.LoginPage import LoginPage
 
-def pytest_configure(config):
-    config.addinivalue_line(
-        "markers", "bdd: Oznacza testy jako testy BDD."
-
 def pytest_addoption(parser):
     parser.addoption("--browser", action="store", default="chrome",
                              help="Choose browser: chrome, firefox, or edge")
